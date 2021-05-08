@@ -1,0 +1,92 @@
+
+body {
+    background-color: #fbf7ed;
+}
+button {
+    padding: 0.5em;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dbd3c2;
+}
+button:hover, a:hover {
+    transition: 0.3s;
+}
+.removenominationbutton {
+    background-color: #eee8d9;
+    width: 10.5em;
+    padding: 2px
+}
+.removenominationbutton:hover {
+    opacity: 30%;
+}
+.nominationposter{
+    border-radius: 10px;
+    width: 10em;
+    height: 15em;   
+}
+.posterplaceholder {
+    background-color: #dbd3c2;
+    color: #b6ac97;
+    border-radius: 10px;
+    width: 9.5em;
+    height: 14.5em; 
+    box-shadow: 0 0 0.5em #dbd3c2;
+}
+#nominationtitle {
+    margin-top: 0.5em;
+}
+
+.addnominationbutton, .selectiondetailsbutton {
+    margin: 0.5em;
+}
+.addnominationbutton {
+    background-color: #008060;
+    color: white;
+}
+.addnominationbutton:hover {
+    background-color: #004c3f;
+}
+.addnominationbutton:disabled {
+    background-color: #dbd3c2;
+    color: #b6ac97;
+}
+
+.selectiondetailsbutton, #clearnominations {
+    background-color: #6b7177;
+    color: white;
+}
+.selectiondetailsbutton:hover, #clearnominations:hover {
+    background-color: #404347;
+}
+
+#searchbar {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#searchbar:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 3px #004c3f; 
+}
+
+#selectionplot {
+    margin-top: 0.5em;
+}
+#imdblink, #imdblink:visited {
+    color: #008060;
+}
+#imdblink:hover {
+    color: #004c3f;
+    text-decoration: none;
+}
+
+.searchresult {
+    padding:0.5em;
+}
+.searchresult:hover {
+    background-color: #eee8d9;
+    border-radius: 10px;
+}
+

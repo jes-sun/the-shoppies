@@ -13,6 +13,9 @@ import Toast from "react-bootstrap/Toast";
 import ToastHeader from "react-bootstrap/ToastHeader";
 import ToastBody from "react-bootstrap/ToastBody";
 
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl"
+
 class Search extends React.Component {
     constructor(props) {
         super(props)
@@ -103,6 +106,7 @@ class Search extends React.Component {
             this.setState({currentNominations:JSON.parse(localStorage.getItem("nominations"))})
         }
         this.toggleSelectionDetails(0)
+        document.getElementById("searchbar").focus();
     }
     componentDidUpdate(prevProps, prevState) {
         this.checkNominationButtons()
@@ -273,11 +277,11 @@ class Search extends React.Component {
                                 <Row>
                                     <Col id="instructions" className="d-flex align-items-center justify-content-center">
                                         <span>
-                                        Who will win the Shoppie for Best Movie? Nominate five of your favourite movies using the search bar below.
+                                            Who should win the Shoppie for Best Movie? Nominate five of your top picks using the search bar below.
                                         </span>
                                     </Col>
-                                    <Col xs={2} lg={1} >
-                                        <button id="clearnominations" onClick={this.onNominationsCleared}>
+                                    <Col className="d-flex align-items-center" md="auto">
+                                        <button id="clearnominations" onClick={this.onNominationsCleared} style={{margin:"auto"}}>
                                             Clear
                                         </button>
                                     </Col>
@@ -290,7 +294,19 @@ class Search extends React.Component {
                         
                         <Row id="midsection">
                             <Col className="py-2">
-                                <input id="searchbar" type="search" placeholder="Search for a movie..." onChange={debounce(this.onSearchChanged, 500)}/>
+                                <InputGroup>
+                                        <InputGroup.Prepend id="searchbarprepend">
+                                            <InputGroup.Text id="basic-addon1">
+                                                And the Shoppie goes to... 
+                                            </InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                    <FormControl 
+                                        id="searchbar" 
+                                        type="search" 
+                                        placeholder="my favourite movie" 
+                                        onChange={debounce(this.onSearchChanged, 500)}
+                                    />
+                                </InputGroup>
                             </Col>
                             
                         </Row>

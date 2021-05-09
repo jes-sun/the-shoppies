@@ -14,7 +14,7 @@ I've decided to throw my hat into the ring and apply for Shopify's Fall 2021 fro
 ## Things I learned
 These are just some things I learned while making this project. I'm still fairly new to React (and JavaScript in general), and I figure that I'll probably remember these things better if I write them down.
 
-- My main goal for this project was to learn Bootstrap, since I didn't yet know how to make a responsive UI. Bootstrap is very useful, I like it.
+- My main goal for this project was to learn Bootstrap, since I didn't yet know how to make a responsive UI. Bootstrap is very useful, I like it. Making the elements fit all the screen sizes is actually so satisfying.
 - Learned what `debounce` is and how to use it. Neat! That'll limit my API requests. Not that this'll ever hit the 1000 daily limit, but y'know. Useful.
 - React state is meant to be immutable. Don't push to a state array. Instead, I can use `concat` to create a new array and replace the old state array with this new array.
 - Some returned results contained duplicate items, which raised issues when assigning keys to search result list items. I tried using a set, but it didn't remove the seemingly duplicate items. I'm still not sure why. To solve this issue, I discovered the `filter` function. I used this to keep only the results that contained the first occurrence of their `imdbID`. This seems like a function I'll end up using often.

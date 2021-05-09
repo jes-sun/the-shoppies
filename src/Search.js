@@ -155,7 +155,7 @@ class Search extends React.Component {
                 })
                 return uniqueSearchResults.map(movie => (
                     <Row key={movie.imdbID} className="searchresult my-2 align-items-center"> 
-                        <Col>
+                        <Col xs={4} md={7}>
                             <h6>
                                 {movie.Title} ({movie.Year})
                             </h6>
@@ -218,7 +218,7 @@ class Search extends React.Component {
         let nominationsCols = []
         if (this.state.currentNominations.length > 0) {
             nominationsCols = this.state.currentNominations.map(movie => (
-                <Col className="d-flex justify-content-center my-3" key={movie.imdbID}>
+                <Col className="d-flex justify-content-center my-3" xs={5} sm={3} lg={2} key={movie.imdbID}>
                     <button className="removenominationbutton" onClick={this.onNominationRemoved.bind(this, movie)}>
                         {this.getPoster(movie)}
                         <h6 id="nominationtitle">
@@ -276,17 +276,17 @@ class Search extends React.Component {
                             <Col id="nominations" className="py-2">
                                 <Row>
                                     <Col id="instructions" className="d-flex align-items-center justify-content-center">
-                                        <span>
+                                        <span className="text-center">
                                             Who should win the Shoppie for Best Movie? Nominate five of your top picks using the search bar below.
                                         </span>
                                     </Col>
                                     <Col className="d-flex align-items-center" md="auto">
-                                        <button id="clearnominations" onClick={this.onNominationsCleared} style={{margin:"auto"}}>
+                                        <button className="mx-auto mt-2" id="clearnominations" onClick={this.onNominationsCleared} style={{margin:"auto"}}>
                                             Clear
                                         </button>
                                     </Col>
                                 </Row>
-                                <Row className="nominationslist">
+                                <Row className="justify-content-center">
                                     {this.renderNominations()}
                                 </Row>
                             </Col>
@@ -303,7 +303,7 @@ class Search extends React.Component {
                                     <FormControl 
                                         id="searchbar" 
                                         type="search" 
-                                        placeholder="my favourite movie" 
+                                        placeholder="the best movie I've ever seen" 
                                         onChange={debounce(this.onSearchChanged, 500)}
                                     />
                                 </InputGroup>

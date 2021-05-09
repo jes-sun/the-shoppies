@@ -63,3 +63,4 @@ These are just some things I learned while making this project. I'm still fairly
 - This API appears to return music videos alongside the movie results. Strange.
 - I know I should be separating this into more functional components instead of one big weird class component. I didn't have the foresight to do it properly in advance. I'll be sure to do that next time.
 - Not enough time right now, but I eventually want to learn about animation libraries for React. I've done some things with CSS transitions, but I want to learn how to do those real Crisp transitions that exist on other websites.
+- The examples on the OMDB website use http instead of https. Search results weren't working once deployed, and that's why. Huh. I'm thankful for error logs.

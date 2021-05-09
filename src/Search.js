@@ -48,6 +48,7 @@ class Search extends React.Component {
         }
     }
     onNominationsCleared = () => {
+        document.getElementById("searchbar").value = ""
         this.setState({currentNominations:[]})
     }
     onSearchChanged = (event) => {

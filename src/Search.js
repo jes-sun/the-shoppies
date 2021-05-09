@@ -71,7 +71,7 @@ class Search extends React.Component {
     }
     searchOMDB = () => {
         const apikey = process.env.REACT_APP_API_KEY
-        const OMDBurl = "http://omdbapi.com/?apikey=" + apikey + "&type=movie&page=1&s=" + this.state.currentSearch
+        const OMDBurl = "https://omdbapi.com/?apikey=" + apikey + "&type=movie&page=1&s=" + this.state.currentSearch
         
         if (this.searchCache()) {
             this.setState({currentResults:JSON.parse(this.searchCache())})
@@ -91,7 +91,7 @@ class Search extends React.Component {
     }
     selectionDetails = () => {
         const apikey = process.env.REACT_APP_API_KEY
-        const OMDBurl = "http://omdbapi.com/?apikey=" + apikey + "&plot=full&i=" + this.state.currentSelection.imdbID
+        const OMDBurl = "https://omdbapi.com/?apikey=" + apikey + "&plot=full&i=" + this.state.currentSelection.imdbID
         
         if (this.selectionCache()) {
             this.setState({currentSelection:JSON.parse(this.selectionCache())})

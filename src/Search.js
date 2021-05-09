@@ -356,7 +356,7 @@ class Search extends React.Component {
         //////////
         const Thanks = (props) => (
             <div className="d-flex align-items-center justify-content-around">
-                <img src={logo_small} height="50px"/>
+                <img src={logo_small} alt="" height="50px"/>
                 Thanks for your nominations!
             </div>
         )

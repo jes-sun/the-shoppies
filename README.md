@@ -9,7 +9,7 @@ This was so, so much fun! Thanks to Shopify for having a nice colour scheme that
 
 ## Requirements
 ### Specifications
-If you're a Shopify employee or another aspiring Shopify intern, then you know the drill. If not, here are the requirements I was given for this project.
+If you're a Shopify employee or another aspiring Shopify intern, then you probably know the drill. If not, here are the requirements I was given for this project.
 
 >The Challenge
 >

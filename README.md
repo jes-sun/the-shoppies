@@ -1,4 +1,8 @@
 # The Shoppies
+## Live link
+[Make your nominations today!](https://the-shoppies-jessun.netlify.app/)
+
+## About
 I've decided to throw my hat into the ring and apply for Shopify's Fall 2021 frontend developer internship! This is only, like, the second web app I've ever made, but I'm learning fast and having fun! I'm not sure if Shopify takes on interns based solely on potential and enthusiasm, but if they do, I'm a great choice :)
 
 This was so, so much fun! Thanks to Shopify for having a nice colour scheme that I could base this project off of 💚

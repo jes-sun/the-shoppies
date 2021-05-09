@@ -8,6 +8,8 @@ I've decided to throw my hat into the ring and apply for Shopify's Fall 2021 fro
 - Search results include a "More info" button that, when clicked, displays genre and plot information along with a link to the movie's IMDB page.
 - Current nominations are saved in `localStorage` so that users can leave and return to their list later.
 - Search queries are also saved in `localStorage` in case queries are revisited.
+- Movies with no poster image have a placeholder to be displayed instead.
+- UI is responsive to different screen sizes.
 
 ## Things I learned
 These are just some things I learned while making this project. I'm still fairly new to React (and JavaScript in general), and I figure that I'll probably remember these things better if I write them down.

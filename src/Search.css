@@ -11,18 +11,24 @@ button {
 button:hover, a:hover {
     transition: 0.3s;
 }
+button:disabled {
+    background-color: #dbd3c2 !important;
+    color: #b6ac97 !important;
+}
+
 .removenominationbutton {
     background-color: #eee8d9;
     width: 10.5em;
     padding: 2px
 }
 .removenominationbutton:hover {
-    opacity: 30%;
+    opacity: 70%;
 }
 .nominationposter{
     border-radius: 10px;
     width: 10em;
-    height: 15em;   
+    height: 15em;
+    box-shadow: 0 0 0.5em #dbd3c2;   
 }
 .posterplaceholder {
     background-color: #dbd3c2;
@@ -46,10 +52,7 @@ button:hover, a:hover {
 .addnominationbutton:hover {
     background-color: #004c3f;
 }
-.addnominationbutton:disabled {
-    background-color: #dbd3c2;
-    color: #b6ac97;
-}
+
 
 .selectiondetailsbutton, #clearnominations {
     background-color: #6b7177;
@@ -74,12 +77,14 @@ button:hover, a:hover {
 #selectionplot {
     margin-top: 0.5em;
 }
-#imdblink, #imdblink:visited {
+.imdblink, .imdblink:visited {
     color: #008060;
+    transition: transform 0.3s;
 }
-#imdblink:hover {
+.imdblink:hover {
     color: #004c3f;
     text-decoration: none;
+    transform: translate(0.5em, 0);
 }
 
 .searchresult {
@@ -89,4 +94,3 @@ button:hover, a:hover {
     background-color: #eee8d9;
     border-radius: 10px;
 }
-

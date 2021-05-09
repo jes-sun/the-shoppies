@@ -2,11 +2,16 @@ import React from "react";
 import { debounce } from "debounce";
 
 import "./Search.css";
+import logo_large from "./logo-large.png";
+import logo_small from "./logo-small.png";
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
+import Toast from "react-bootstrap/Toast";
+import ToastHeader from "react-bootstrap/ToastHeader";
+import ToastBody from "react-bootstrap/ToastBody";
 
 class Search extends React.Component {
     constructor(props) {
@@ -28,16 +33,10 @@ class Search extends React.Component {
     onNominationsChanged() {
         localStorage.setItem("nominations", JSON.stringify(this.state.currentNominations))
         if (this.state.currentNominations.length === 5) {
-            this.toggleMaxNominations(1)
+            this.triggerMaxNominations()
         } else {
-            this.toggleMaxNominations(0)
-
-            // if (this.state.currentNominations.length > 0) {
-            //     this.toggleInstructions(0)
-            // } else {
-            //     this.toggleInstructions(1)
-            // }
-        } 
+            document.getElementById("clearnominations").disabled = (this.state.currentNominations.length === 0)
+        }
     }
     onNominationsCleared = () => {
         this.setState({currentNominations:[]})
@@ -104,8 +103,6 @@ class Search extends React.Component {
             this.setState({currentNominations:JSON.parse(localStorage.getItem("nominations"))})
         }
         this.toggleSelectionDetails(0)
-        //this.toggleInstructions(1)   
-        this.toggleMaxNominations(0)
     }
     componentDidUpdate(prevProps, prevState) {
         this.checkNominationButtons()
@@ -128,17 +125,6 @@ class Search extends React.Component {
             document.getElementById("selectiondetails").style.visibility = "hidden"
         }
         
-    }
-    toggleInstructions(t) {
-        if (t) {
-            document.getElementById("instructions").style.display = "block"
-        } else {
-            document.getElementById("instructions").style.display = "none"
-        }
-        
-    }
-    toggleMaxNominations(t) {
-        // TODO
     }
     checkNominationButtons() {
         const nominationButtons = document.getElementsByClassName("addnominationbutton")
@@ -187,12 +173,6 @@ class Search extends React.Component {
                     </span>
                 )
             }
-        } else {
-            return(
-                <span className="noresults">
-                    Type something in the search bar!
-                </span>
-            )
         }
     }
     
@@ -200,22 +180,33 @@ class Search extends React.Component {
         if (this.state.currentSelection) {
             const currentSelection = this.state.currentSelection
             return(
+                <>
                 <Row>
-                    <Col>
+                    <Col className="mb-2">
                         <h4 id="selectionttitle">
                             {currentSelection.Title} ({currentSelection.Year}) <br/> 
                         </h4>                       
                         <em id="selectiongenre">{currentSelection.Genre}</em> <br/>                        
-                        <p id="selectionplot">
-                            {currentSelection.Plot}
-                        </p>
-                        <a id="imdblink" href={"https://www.imdb.com/title/" + currentSelection.imdbID} rel="external">
-                            <h6>
+                        <hr/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={12} lg="auto">
+                        <div style={{width:"fit-content", margin:"auto"}}>
+                            {this.getPoster(currentSelection)}
+                        </div>
+                        <hr/>
+                        <a className="imdblink" href={"https://www.imdb.com/title/" + currentSelection.imdbID} rel="noreferrer" target="_blank">
+                            <h6 className="imdblink">
                                 IMDB ➔
                             </h6>
                         </a>
                     </Col>
+                    <Col>
+                        {currentSelection.Plot}
+                    </Col>
                 </Row>
+                </>
             )
         }
     }
@@ -256,19 +247,31 @@ class Search extends React.Component {
         }
     }
 
+    triggerMaxNominations = () => {
+        
+    }
+
     render() {
         return (
             <Container>
                 <Row>
                     <Col>
-                        <Row id="title" className=" mt-3 justify-content-center">
-                            <h1>The Shoppies</h1>
+                        <Row className="mt-3">
+                            <Col className="d-flex align-items-center">
+                            <img src={logo_large} alt="The Shoppies" height="200em" className="mx-auto d-block"/>
+                            </Col>
                         </Row>
-                        
+                        <Row>
+                            <Col className="text-center">
+                            <h3>
+                                Movie awards for entrepreneurs
+                            </h3>
+                            </Col>
+                        </Row>
                         <Row id="topsection">
                             <Col id="nominations" className="py-2">
                                 <Row>
-                                    <Col id="instructions" className="pb-2 mb-2 text-center">
+                                    <Col id="instructions" className="d-flex align-items-center justify-content-center">
                                         <span>
                                         Who will win the Shoppie for Best Movie? Nominate five of your favourite movies using the search bar below.
                                         </span>
@@ -301,6 +304,7 @@ class Search extends React.Component {
                         {this.renderSelection()}
                     </Col>
                 </Row>
+                
                 
             </Container>
             )

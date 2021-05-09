@@ -19,7 +19,8 @@ button:disabled {
 .removenominationbutton {
     background-color: #eee8d9;
     width: 10.5em;
-    padding: 2px
+    padding-left: 2px;
+    padding-right: 2px;
 }
 .removenominationbutton:hover {
     opacity: 70%;
@@ -34,8 +35,8 @@ button:disabled {
     background-color: #dbd3c2;
     color: #b6ac97;
     border-radius: 10px;
-    width: 9.5em;
-    height: 14.5em; 
+    width: 10em;
+    height: 15em; 
     box-shadow: 0 0 0.5em #dbd3c2;
 }
 #nominationtitle {
@@ -45,11 +46,11 @@ button:disabled {
 .addnominationbutton, .selectiondetailsbutton {
     margin: 0.5em;
 }
-.addnominationbutton {
+.addnominationbutton, #finalnominationbutton {
     background-color: #008060;
     color: white;
 }
-.addnominationbutton:hover {
+.addnominationbutton:hover, #finalnominationbutton:hover {
     background-color: #004c3f;
 }
 
@@ -59,6 +60,15 @@ button:disabled {
 }
 .selectiondetailsbutton:hover, #clearnominations:hover {
     background-color: #404347;
+}
+
+#finalnominationsection {
+    padding: 0;
+    box-shadow: 0 0 5px #004c3f; 
+}
+#finalnominationbutton {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .input-group {
@@ -75,13 +85,15 @@ button:disabled {
 #searchbar {
     padding: 0.5em;
     color: black;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
     border: none;
 }
 #searchbarprepend {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+}
+
+#searchbar:disabled {
+    background-color: transparent;
 }
 
 #searchbar:focus, button:focus {
@@ -108,4 +120,18 @@ button:disabled {
 .searchresult:hover {
     background-color: #eee8d9;
     border-radius: 10px;
+}
+
+
+.Toastify__toast {
+    text-align: center;
+    border-radius: 10px !important;
+}
+.Toastify__toast--info {
+    background-color: #008060 !important;
+    box-shadow: 0 0 10px #004c3f !important;
+}
+.Toastify__toast--success {
+    background-color: #96bf48 !important;
+    box-shadow: 0 0 10px #96bf48 !important;
 }

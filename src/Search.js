@@ -1,5 +1,6 @@
 import React from "react";
 import { debounce } from "debounce";
+import confetti from "canvas-confetti";
 
 import "./Search.css";
 import logo_large from "./logo-large.png";
@@ -9,9 +10,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import Toast from "react-bootstrap/Toast";
-import ToastHeader from "react-bootstrap/ToastHeader";
-import ToastBody from "react-bootstrap/ToastBody";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl"
@@ -28,6 +28,9 @@ class Search extends React.Component {
         this.setState({currentNominations:newNominations})
     }
     onNominationRemoved = (movie) => {
+        if (this.state.currentNominations.length === 5) {
+            document.getElementById("searchbar").value = ""
+        }
         const newNominations = this.state.currentNominations.filter((item) => {
             return item.imdbID !== movie.imdbID
         })
@@ -145,6 +148,55 @@ class Search extends React.Component {
     }
 
     // additional rendering
+    renderSearchbar = () => {
+        if (this.state.currentNominations.length !== 5) {
+            return (
+                <InputGroup>
+                    <InputGroup.Prepend id="searchbarprepend">
+                        <InputGroup.Text id="basic-addon1">
+                            And the Shoppie goes to... 
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl 
+                        id="searchbar" 
+                        type="search" 
+                        placeholder="the best movie I've ever seen" 
+                        style={{
+                            borderTopRightRadius:10,
+                            borderBottomRightRadius:10
+                        }}
+                        onChange={debounce(this.onSearchChanged, 500)}
+                    />
+                </InputGroup>
+            )
+        } else {
+            return (
+                <InputGroup>
+                    <InputGroup.Prepend id="searchbarprepend">
+                        <InputGroup.Text id="basic-addon1">
+                            And the Shoppie goes to... 
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl 
+                        id="searchbar" 
+                        type="search" 
+                        value="these five movies!" 
+                        disabled
+                    />
+                    <InputGroup.Append id="searchbarappend">
+                        <InputGroup.Text id="finalnominationsection">
+                            <button id="finalnominationbutton" onClick={this.triggerNominationsSubmitted}>
+                                Nominate
+                            </button>
+                        </InputGroup.Text>
+                    </InputGroup.Append>
+                </InputGroup>
+            )
+        }
+       
+            
+        
+    }
     renderResults = () => {
         if (this.state.currentResults.Response) {
             if (this.state.currentResults.Response === "True") {
@@ -189,7 +241,8 @@ class Search extends React.Component {
                     <Col className="mb-2">
                         <h4 id="selectionttitle">
                             {currentSelection.Title} ({currentSelection.Year}) <br/> 
-                        </h4>                       
+                        </h4>
+                        {currentSelection.Rated}  <br/>                     
                         <em id="selectiongenre">{currentSelection.Genre}</em> <br/>                        
                         <hr/>
                     </Col>
@@ -219,11 +272,17 @@ class Search extends React.Component {
         if (this.state.currentNominations.length > 0) {
             nominationsCols = this.state.currentNominations.map(movie => (
                 <Col className="d-flex justify-content-center my-3" xs={5} sm={3} lg={2} key={movie.imdbID}>
-                    <button className="removenominationbutton" onClick={this.onNominationRemoved.bind(this, movie)}>
-                        {this.getPoster(movie)}
-                        <h6 id="nominationtitle">
-                            {movie.Title}
-                        </h6>
+                    <button className="removenominationbutton d-flex flex-column justify-content-around align-items-center" onClick={this.onNominationRemoved.bind(this, movie)}>
+                        <Row>
+                            <Col className="d-flex flex-column justify-content-start">
+                                {this.getPoster(movie)}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col id="nominationtitle" className="mx-auto my-auto">
+                                {movie.Title}
+                            </Col>
+                        </Row>
                     </button>
                 </Col>   
                 ))
@@ -238,7 +297,7 @@ class Search extends React.Component {
     getPoster(movie) {
         if (movie.Poster !== "N/A") {
             return (
-                <img src={movie.Poster} alt={movie.Title} className="nominationposter"></img>
+                <img src={movie.Poster} alt={movie.Title} className="nominationposter align"></img>
             )
         } else {
             return (
@@ -252,14 +311,58 @@ class Search extends React.Component {
     }
 
     triggerMaxNominations = () => {
-        
+        toast.info("You've chosen five movies!", {
+            position: "top-center",
+            hideProgressBar: true,
+            closeButton: false
+        })
     }
 
+    triggerNominationsSubmitted = () => {
+        //////////
+        // Confetti code adapted from https://www.kirilv.com/canvas-confetti/
+        //////////
+        const end = Date.now() + (5 * 1000);
+        var colors = ["#96bf48","#004c3f"];
+
+        (function frame() {
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: colors
+        });
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: colors
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+        }());
+        //////////
+        toast.success("Thanks for your nominations!", {
+            position: "top-center",
+            closeButton: false
+        })
+
+        setTimeout( () => {
+            localStorage.removeItem("nominations")
+            window.location.reload()
+        }, 5000)
+    }
+    
     render() {
         return (
             <Container>
                 <Row>
                     <Col>
+                    <ToastContainer/>
                         <Row className="mt-3">
                             <Col className="d-flex align-items-center">
                             <img src={logo_large} alt="The Shoppies" height="200em" className="mx-auto d-block"/>
@@ -294,21 +397,8 @@ class Search extends React.Component {
                         
                         <Row id="midsection">
                             <Col className="py-2">
-                                <InputGroup>
-                                        <InputGroup.Prepend id="searchbarprepend">
-                                            <InputGroup.Text id="basic-addon1">
-                                                And the Shoppie goes to... 
-                                            </InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                    <FormControl 
-                                        id="searchbar" 
-                                        type="search" 
-                                        placeholder="the best movie I've ever seen" 
-                                        onChange={debounce(this.onSearchChanged, 500)}
-                                    />
-                                </InputGroup>
-                            </Col>
-                            
+                                {this.renderSearchbar()}    
+                            </Col>                        
                         </Row>
                     </Col>
                 </Row>

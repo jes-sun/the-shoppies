@@ -2,15 +2,21 @@
 I've decided to throw my hat into the ring and apply for Shopify's Fall 2021 frontend developer internship! This is only, like, the second web app I've ever made, but I'm learning fast and having fun! I'm not sure if Shopify takes on interns based solely on potential and enthusiasm, but if they do, I'm a great choice :)
 
 ## Requirements
-# Specifications
+### Specifications
 
-# My Additions
+### My Additions
 - Search results include a "More info" button that, when clicked, displays genre and plot information along with a link to the movie's IMDB page.
 - Current nominations are saved in `localStorage` so that users can leave and return to their list later.
 - Search queries are also saved in `localStorage` in case queries are revisited.
 - Movies with no poster image have a placeholder to be displayed instead.
 - UI is responsive to different screen sizes.
+- Toasts when five choices are made and when nominations are submitted.
+- Confetti to celebrate nominations! 🎉
 
+### Packages used
+- `react-bootstrap`
+- `react-toastify`
+- `canvas-confetti`
 ## Things I learned
 These are just some things I learned while making this project. I'm still fairly new to React (and JavaScript in general), and I figure that I'll probably remember these things better if I write them down.
 
@@ -21,4 +27,4 @@ These are just some things I learned while making this project. I'm still fairly
 - I learned that localStorage can only store strings, and not objects. Easy fix with `JSON.stringify()` and `JSON.parse()`.
 - I learned how to store my API key in `.env` so I can protect it. For ease of viewing my submission, I'll keep the API key in, but now I know I can hide it.
 - This API appears to return music videos alongside the movie results. Strange.
-.
+- I know I should be separating this into more functional components instead of one big weird class component. I didn't have the foresight to do it properly in advance. I'll be sure to do that next time.

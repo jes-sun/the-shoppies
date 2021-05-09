@@ -360,6 +360,7 @@ class Search extends React.Component {
                 Thanks for your nominations!
             </div>
         )
+        toast.dismiss();
         toast.info(<Thanks/>, {
             position: "top-center",
             closeButton: false,
@@ -368,7 +369,6 @@ class Search extends React.Component {
                 window.location.reload()
             }
         })
-
     }
     
     render() {

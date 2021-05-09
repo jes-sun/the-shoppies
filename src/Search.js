@@ -10,6 +10,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -253,7 +256,12 @@ class Search extends React.Component {
                             {this.getPoster(currentSelection)}
                         </div>
                         <hr/>
-                        <a className="imdblink" href={"https://www.imdb.com/title/" + currentSelection.imdbID} rel="noreferrer" target="_blank">
+                        <a 
+                            className="imdblink" 
+                            href={"https://www.imdb.com/title/" + currentSelection.imdbID} 
+                            rel="noreferrer" 
+                            target="_blank"
+                        >
                             <h6 className="imdblink">
                                 IMDB ➔
                             </h6>
@@ -346,19 +354,51 @@ class Search extends React.Component {
         }
         }());
         //////////
-        toast.success("Thanks for your nominations!", {
+        const Thanks = (props) => (
+            <div className="d-flex align-items-center justify-content-around">
+                <img src={logo_small} height="50px"/>
+                Thanks for your nominations!
+            </div>
+        )
+        toast.info(<Thanks/>, {
             position: "top-center",
-            closeButton: false
+            closeButton: false,
+            onClose: () => {
+                localStorage.removeItem("nominations")
+                window.location.reload()
+            }
         })
 
-        setTimeout( () => {
-            localStorage.removeItem("nominations")
-            window.location.reload()
-        }, 5000)
     }
     
     render() {
         return (
+            <>
+            <Navbar className="justify-content-end">
+                <Nav className="ml-4">
+                    <strong className="navitem">Jessa Sundberg</strong>
+                </Nav>
+                <Nav className="ml-4">
+                    <a 
+                        className="navitem navlink" 
+                        href="https://github.com/jes-sun" 
+                        rel="noreferrer" 
+                        target="_blank"
+                    >
+                        GitHub
+                    </a>
+                </Nav>
+                <Nav className="ml-4">
+                    <a 
+                        className="navitem navlink" 
+                        href="https://www.linkedin.com/in/jessun99/" 
+                        rel="noreferrer" 
+                        target="_blank"
+                    >
+                        LinkedIn
+                    </a>
+                </Nav>
+            </Navbar>
             <Container>
                 <Row>
                     <Col>
@@ -410,9 +450,8 @@ class Search extends React.Component {
                         {this.renderSelection()}
                     </Col>
                 </Row>
-                
-                
             </Container>
+            </>
             )
     }
     

@@ -7,6 +7,13 @@ I've decided to throw my hat into the ring and apply for Shopify's Fall 2021 fro
 
 This was so, so much fun! Thanks to Shopify for having a nice colour scheme that I could base this project off of 💚
 
+## Preview
+![Homepage](images/homepage.png)
+
+![Selections](images/selections.png)
+
+![Nominated](images/nominated.png)
+
 ## Requirements
 ### Specifications
 If you're a Shopify employee or another aspiring Shopify intern, then you probably know the drill. If not, here are the requirements I was given for this project.
